@@ -21,13 +21,13 @@ expecting rough edges. What changed release by release is on the
 | Loading into an experience | Works | World, avatar and UI render, signed in |
 | Engine content store | Works | `RbxStorage` is a real SQLite database; cache hits rise across launches, so assets are not refetched every session |
 | Clean shutdown | Works | Full pause, stop and destroy sequence, seen in the engine's own log |
-| Signing in | Works | Through Quick Sign-in, a code flow that needs no typing |
+| Signing in | Works | Through Quick Sign-in, a code flow that needs no typing. A password followed by a two-step code stalled on the verification window ([#83](https://github.com/luohoa97/cordial/issues/83)); the window now gets the app's native bridge, `INFERRED` to fix it and not yet seen with a real code ([ADR-063](/adr/ADR-063-sign-in-challenge-windows-get-the-native-bridge)) |
 | Staying signed in | Works | Cookies and identity are kept in the desktop keyring, not a file |
 | Profiles | Works | A menu in the header bar; creates and deletes one, and marks a profile another window holds |
 | Two accounts at once | Works | Two profiles, two instances, side by side; budget about 1.5 GB of memory each ([ADR-012](/adr/ADR-012-profiles-and-instances)) |
 | Keyboard in an experience | Works | WASD, space, the lot |
 | Mouse: navigation, buttons, focus | Works | |
-| Mouse: turning the camera | Works | Right-drag, using the compositor's unaccelerated delta, so sensitivity does not depend on your desktop mouse settings |
+| Mouse: turning the camera | Works | Right-drag, using the compositor's unaccelerated delta, so sensitivity does not depend on your desktop mouse settings. The pointer lock holds the cursor still during the drag; on Hyprland that needs a workaround for the compositor dropping the button ([ADR-060](/adr/ADR-060-hyprland-takes-the-camera-button-when-the-lock-activates)), and `CORDIAL_DRAG_LOCK=0` turns it off |
 | Scroll wheel | Works | |
 | Pointer capture in first person | Works | The cursor stays in the window |
 | Typing into text fields | Works | A GTK overlay draws the focused Android field live, with caret movement and Wayland IME preedit |
